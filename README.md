@@ -43,7 +43,7 @@ Name, title, company, mobile and WhatsApp (+20 122 218 0080), email, website, Li
 
 ## 5. QR code
 
-The QR code is drawn in the browser from the address the card is opened at, so it always matches the live URL. Open the live card, then use **Download PNG** (presentations, 1,584 px) or **Download SVG** (print, scales without loss). Download it from the final address (`card.talindata.com`), not from a preview or local copy. To force a specific address, set `cardUrl` in `config.js`. Test every printed code with a phone before printing in bulk.
+The QR code carries the Talin icon in the center (untick **Talin icon in the center** for a plain code; downloads follow the tick box and the plain file is named `...-plain`). It is drawn in the browser from the address the card is opened at, so it always matches the live URL. Open the live card, then use **Download PNG** (presentations, 1,584 px) or **Download SVG** (print, scales without loss). Download it from the final address (`card.talindata.com`), not from a preview or local copy. To force a specific address, set `cardUrl` in `config.js`. Test every printed code with a phone before printing in bulk.
 
 ## 6. Link previews (WhatsApp, LinkedIn)
 
