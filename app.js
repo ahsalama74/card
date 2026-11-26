@@ -115,6 +115,7 @@
     d: ["M92.64,73.31c-6.5,5.11-14.6,8.76-24.09,10.84l-.38.09c-.46.05-.78.08-1.13.15-.27.05-.49.06-.82.06l-.33.03c-.62.04-1.31.08-2.14.05-.52,0-1.12-.03-1.83-.07h-.29c-.58.03-1.3-.01-1.93-.05-3.27-.23-6.94-.57-10.18-1.76,5.26,10.48,5.07,21.56-.56,32.15-1.47,2.75-3.2,5.41-5.3,8.12l-2.17,2.8v-54.62s53.9.04,53.9.04l-2.76,2.17Z", "M95.4,125.72l-53.91-.04,2.76-2.17c6.5-5.11,14.6-8.76,24.08-10.84l.38-.09c.46-.05.77-.08,1.12-.15.28-.06.5-.06.83-.06l.31-.02c.64-.04,1.33-.09,2.16-.05.47,0,1.02.03,1.65.06l.46.02c.58-.04,1.3,0,1.93.04,3.27.23,6.94.57,10.18,1.76-5.26-10.48-5.07-21.56.56-32.15,1.47-2.76,3.2-5.41,5.3-8.12l2.17-2.8v54.62Z"],
     x: 41.49, y: 71.10, w: 53.91, h: 54.63
   };
+  var ICON_FROM = "#12008C", ICON_TO = "#00B8FF";   // Talin palette: Primary Indigo to Cyan
   var QUIET = 4;          // quiet zone in modules (QR specification minimum)
   var qr, cut, withIcon = true;
 
@@ -160,7 +161,9 @@
     var icon = "";
     if (cut) {
       var b = iconBox();
-      icon = '<g fill="#000940" transform="translate(' + b.tx.toFixed(3) + " " + b.ty.toFixed(3) + ") scale(" + b.s.toFixed(5) + ')">' +
+      icon = '<defs><linearGradient id="tg" gradientUnits="userSpaceOnUse" x1="' + ICON.x + '" y1="' + ICON.y + '" x2="' + (ICON.x + ICON.w) + '" y2="' + (ICON.y + ICON.h) + '">' +
+        '<stop offset="0" stop-color="' + ICON_FROM + '"/><stop offset="1" stop-color="' + ICON_TO + '"/></linearGradient></defs>' +
+        '<g fill="url(#tg)" transform="translate(' + b.tx.toFixed(3) + " " + b.ty.toFixed(3) + ") scale(" + b.s.toFixed(5) + ')">' +
         ICON.d.map(function (p) { return '<path d="' + p + '"/>'; }).join("") + "</g>";
     }
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + total + " " + total + '"' + dim +
@@ -206,6 +209,9 @@
       ctx.save();
       ctx.translate(b.tx * scale, b.ty * scale);
       ctx.scale(b.s * scale, b.s * scale);
+      var g = ctx.createLinearGradient(ICON.x, ICON.y, ICON.x + ICON.w, ICON.y + ICON.h);
+      g.addColorStop(0, ICON_FROM); g.addColorStop(1, ICON_TO);
+      ctx.fillStyle = g;
       ICON.d.forEach(function (p) { ctx.fill(new Path2D(p)); });
       ctx.restore();
     }
