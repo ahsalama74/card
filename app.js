@@ -167,8 +167,8 @@
         ICON.d.map(function (p) { return '<path d="' + p + '"/>'; }).join("") + "</g>";
     }
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + total + " " + total + '"' + dim +
-      ' shape-rendering="crispEdges"><rect width="' + total + '" height="' + total + '" fill="#FFFFFF"/>' +
-      '<path fill="#000940" d="' + d.join("") + '"/>' + icon + "</svg>";
+      ' ><rect width="' + total + '" height="' + total + '" fill="#FFFFFF"/>' +
+      '<path shape-rendering="crispEdges" fill="#12008C" d="' + d.join("") + '"/>' + icon + "</svg>";
   }
 
   function download(blob, name) {
@@ -192,13 +192,13 @@
   $("qr-png").addEventListener("click", function () {
     if (!qr) return;
     var n = qr.getModuleCount(), total = n + QUIET * 2;
-    var scale = Math.max(1, Math.floor(1600 / total)); // whole pixels per module keeps edges sharp
+    var scale = Math.max(1, Math.floor(3000 / total)); // whole pixels per module keeps edges sharp
     var px = total * scale;
     var cv = document.createElement("canvas");
     cv.width = cv.height = px;
     var ctx = cv.getContext("2d");
     ctx.fillStyle = "#FFFFFF"; ctx.fillRect(0, 0, px, px);
-    ctx.fillStyle = "#000940";
+    ctx.fillStyle = "#12008C";
     for (var r = 0; r < n; r++) {
       for (var c = 0; c < n; c++) {
         if (qr.isDark(r, c) && !inCut(r, c)) ctx.fillRect((c + QUIET) * scale, (r + QUIET) * scale, scale, scale);
