@@ -167,8 +167,8 @@
         ICON.d.map(function (p) { return '<path d="' + p + '"/>'; }).join("") + "</g>";
     }
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + total + " " + total + '"' + dim +
-      ' ><rect width="' + total + '" height="' + total + '" fill="#FFFFFF"/>' +
-      '<path shape-rendering="crispEdges" fill="#000940" d="' + d.join("") + '"/>' + icon + "</svg>";
+      ' shape-rendering="crispEdges"><rect width="' + total + '" height="' + total + '" fill="#FFFFFF"/>' +
+      '<path fill="#000940" d="' + d.join("") + '"/>' + icon + "</svg>";
   }
 
   function download(blob, name) {
